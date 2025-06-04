@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PULSO</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <a id="headerUser" class="user-link">Iniciar sesión</a>
+  <div class="logo">⚖️ <span class="titulo-app">PULSO</span></div>
+  <div class="menu-button" onclick="toggleMenu()">☰</div>
+</header>
+
+  <div id="menu-lateral" class="menu-lateral hidden">
+     <div class="cerrar-x" onclick="toggleMenu()">✕</div>
+
+  <div class="menu-header">
+    <p>Hola, nombre!</p>
+  </div>
+  <ul class="menu-opciones">
+    <li><a href="index.html"> <span></span>Inicio</a></li>
+    <li><a href="historial.html"><span></span> Historial</a></li>
+    <li><a href="perfil.html"><span></span> Editar perfil</a></li>
+    <li><a href="#"><span></span> Ayuda</a></li>
+    <li><a href="#"><span></span> Ajustes</a></li>
+  </ul>
+  <div class="usuario-info">
+    <div class="punto-rosa"></div>
+    <div class="datos">
+      <strong>Usuario</strong><br>
+      <span>usuario@email.com</span>
+    </div>
+  </div>
+</div>
+
+<div id="menu-overlay" class="menu-overlay hidden" onclick="toggleMenu()"></div>
+
+  <main>
+    <section id="pantalla-inicio" class="pantalla">
+      <div class="tabs">
+        <a class="tab" href="informada.html">INFORMADO</a>
+        <a class="tab" href="aleatoria.html">ALEATORIO</a>
+      </div>
+
+      <p class="frase-motivadora">Decide mejor, sin agobios</p>
+      <button class="btn-grad" onclick="location.href='informada.html'">DECIDIR</button>
+      <p class="footer-frase">¡Pongámonos en marcha!</p>
+
+      <div class="botones-footer">
+        <a href="historial.html" class="btn-secundario">HISTORIAL 🔍</a>
+        <a href="perfil.html"    class="btn-secundario">PERFIL ➤</a>
+    </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>Elige con cabeza. Vive con intención.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PULSO - Informada</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+<header>
+  <a id="headerUser" class="user-link">Iniciar sesión</a>
+  <div class="logo">⚖️ <span class="titulo-app">PULSO</span></div>
+  <div class="menu-button" onclick="toggleMenu()">☰</div>
+</header>
+
+<div id="menu-lateral" class="menu-lateral hidden">
+<div class="cerrar-x" onclick="toggleMenu()">✕</div>
+  <div class="menu-header">
+    <p>Hola, nombre!</p>
+  </div>
+  <ul class="menu-opciones">
+    <li><a href="index.html"> <span></span>Inicio</a></li>
+    <li><a href="historial.html"><span></span> Historial</a></li>
+    <li><a href="perfil.html"><span></span> Editar perfil</a></li>
+    <li><a href="#"><span></span> Ayuda</a></li>
+    <li><a href="#"><span></span> Ajustes</a></li>
+  </ul>
+  <div class="usuario-info">
+    <div class="punto-rosa"></div>
+    <div class="datos">
+      <strong>Usuario</strong><br>
+      <span>usuario@email.com</span>
+    </div>
+  </div>
+</div>
+<div id="menu-overlay" class="menu-overlay hidden" onclick="toggleMenu()"></div>
+
+
+  </header>
+
+
+  <main>
+    <section id="pantalla-informada" class="pantalla">
+      <div class="tabs">
+        <a class="tab active" href="informada.html">INFORMADO</a>
+        <a class="tab" href="aleatoria.html">ALEATORIO</a>
+      </div>
+
+<div id="opciones-informadas" class="bloque-opciones">
+  <input type="text" value="Opción 1" />
+  <input type="text" value="Opción 2" />
+  <button class="btn-link" onclick="añadirOpcion('opciones-informadas')">+ Añadir opción</button>
+</div>
+
+<!-- Resultado visual -->
+<div id="resultado-contenedor" class="hidden">
+  <div class="resultado-box">
+    <div id="opcion-elegida" class="resultado-opcion">OPCIÓN ELEGIDA</div>
+    <div id="frase-elegida" class="resultado-frase">Una frase inspiradora</div>
+    <button class="btn-reload" onclick="decidir(true)">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+    <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6a6 6 0 0 1-6 6 6 6 0 0 1-5.65-4H4.26a8 8 0 0 0 7.74 6c4.42 0 8-3.58 8-8s-3.58-8-8-8z"/>
+  </svg>
+</button>
+
+  </div>
+</div>
+
+
+<button class="btn-grad btn-grande" onclick="decidir()">COMENZAR</button>
+
+      <p id="Mensaje-decision-I"class="frase-lila">Permite que la IA decida por ti</p>
+
+      <div class="botones-footer">
+  <a href="historial.html" class="btn-secundario">HISTORIAL 🔍</a>
+  <a href="perfil.html"    class="btn-secundario">PERFIL ➤</a>
+</div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>Elige con cabeza. Vive con intención.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

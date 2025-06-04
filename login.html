@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>PULSO – Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="pantalla">
+    <h2>Inicia sesión</h2>
+
+    <input id="login-email"  type="email" placeholder="Email">
+    <input id="login-pass"   type="password" placeholder="Contraseña">
+    <button class="btn-grad" onclick="login()">Entrar</button>
+
+    <p>¿Nuevo? <a href="#" onclick="toggleRegistro()">Crear cuenta</a></p>
+
+    <div id="registro" class="hidden">
+      <input id="reg-nombre" type="text"     placeholder="Tu nombre">
+      <input id="reg-email"  type="email"    placeholder="Email">
+      <input id="reg-pass"   type="password" placeholder="Contraseña">
+      <button class="btn-grad" onclick="crearCuenta()">Registrar y entrar</button>
+    </div>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PULSO – Perfil</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a id="headerUser" class="user-link">Iniciar sesión</a>
+  <div class="logo">⚖️ <span class="titulo-app">PULSO</span></div>
+  <div class="menu-button" onclick="toggleMenu()">☰</div>
+</header>
+
+
+ <div id="menu-lateral" class="menu-lateral hidden">
+  <div class="cerrar-x" onclick="toggleMenu()">✕</div>
+  <div class="menu-header">
+    <p>Hola, nombre!</p>
+  </div>
+  <ul class="menu-opciones">
+    <li><a href="index.html"><span></span> Inicio</a></li>
+    <li><a href="historial.html"><span></span> Historial</a></li>
+    <li><a href="perfil.html"><span></span> Editar perfil</a></li>
+    <li><a href="#"><span></span> Ayuda</a></li>
+    <li><a href="#"><span></span> Ajustes</a></li>
+  </ul>
+  <div class="usuario-info">
+    <div class="punto-rosa"></div>
+    <div class="datos">
+      <strong>Usuario</strong><br>
+      <span>usuario@email.com</span>
+    </div>
+  </div>
+</div>
+
+
+  <main class="pantalla">
+    <h2>Mi perfil</h2>
+
+    <label>Nombre
+      <input id="perfil-nombre" type="text" placeholder="Tu nombre">
+    </label>
+
+    <label>Email
+      <input id="perfil-email" type="email" placeholder="correo@ejemplo.com">
+    </label>
+
+    <label>Meta semanal
+      <input id="perfil-meta" type="text" placeholder="p.ej. Leer 3 veces">
+    </label>
+
+    <button class="btn-grad" onclick="guardarPerfil()">Guardar cambios</button>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
