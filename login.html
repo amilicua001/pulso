@@ -2,29 +2,61 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>PULSO – Login</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>PULSO · Iniciar sesión</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <main class="pantalla">
-    <h2>Inicia sesión</h2>
+<body class="login-body">
 
-    <input id="login-email"  type="email" placeholder="Email">
-    <input id="login-pass"   type="password" placeholder="Contraseña">
-    <button class="btn-grad" onclick="login()">Entrar</button>
+  <!-- CABECERA REDUCIDA -->
+<header>
+  <a id="headerUser" class="user-link">Iniciar sesión</a>
+  <a href="index.html" class="logo">
+      <img src="logo-pulso.png" alt="Pulso logo" class="logo-img">
+  </a>
+  <div class="menu-button" onclick="toggleMenu()">☰</div>
+</header>
 
-    <p>¿Nuevo? <a href="#" onclick="toggleRegistro()">Crear cuenta</a></p>
+<div id="menu-lateral" class="menu-lateral hidden">
+<div class="cerrar-x" onclick="toggleMenu()">✕</div>
+  <div class="menu-header">
+<p id="saludo-menu">Hola, invitado!</p>
+  </div>
+  <ul class="menu-opciones">
+    <li><a href="index.html"> <span></span>Inicio</a></li>
+    <li><a href="historial.html"><span></span> Historial</a></li>
+    <li><a href="perfil.html"><span></span> Editar perfil</a></li>
+    <li><a href="#"><span></span> Ayuda</a></li>
+    <li><a href="#"><span></span> Ajustes</a></li>
+  </ul>
+  
+</div>
+<div id="menu-overlay" class="menu-overlay hidden" onclick="toggleMenu()"></div>
 
-    <div id="registro" class="hidden">
-      <input id="reg-nombre" type="text"     placeholder="Tu nombre">
-      <input id="reg-email"  type="email"    placeholder="Email">
-      <input id="reg-pass"   type="password" placeholder="Contraseña">
-      <button class="btn-grad" onclick="crearCuenta()">Registrar y entrar</button>
-    </div>
+
+  <!-- FORMULARIO -->
+  <main class="login-panel">
+
+    <h2 class="login-title">INICIA SESIÓN</h2>
+
+    <label>EMAIL
+      <input id="login-email" type="email" placeholder="correo@ejemplo.com">
+    </label>
+
+    <label>CONTRASEÑA
+      <input id="login-pass" type="password" placeholder="········">
+    </label>
+
+    <button class="btn-grad btn-login" onclick="login()">INICIAR SESIÓN</button>
+
+    <a href="registro.html" class="btn-mini">Registrarse</a>
+    <p class="login-footer">Que empiece la magIA</p>
+    <a href="index.html" class="btn-grad btn-home">PÁGINA PRINCIPAL</a>
   </main>
 
+  <!-- TOAST -->
   <div id="toast" class="toast hidden"></div>
+
   <script src="app.js"></script>
 </body>
 </html>

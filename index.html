@@ -9,7 +9,9 @@
 <body>
 <header>
   <a id="headerUser" class="user-link">Iniciar sesión</a>
-  <div class="logo">⚖️ <span class="titulo-app">PULSO</span></div>
+  <a href="index.html" class="logo">
+      <img src="logo-pulso.png" alt="Pulso logo" class="logo-img">
+  </a>
   <div class="menu-button" onclick="toggleMenu()">☰</div>
 </header>
 
@@ -17,7 +19,7 @@
      <div class="cerrar-x" onclick="toggleMenu()">✕</div>
 
   <div class="menu-header">
-    <p>Hola, nombre!</p>
+<p id="saludo-menu">Hola, invitado!</p>
   </div>
   <ul class="menu-opciones">
     <li><a href="index.html"> <span></span>Inicio</a></li>
@@ -26,13 +28,6 @@
     <li><a href="#"><span></span> Ayuda</a></li>
     <li><a href="#"><span></span> Ajustes</a></li>
   </ul>
-  <div class="usuario-info">
-    <div class="punto-rosa"></div>
-    <div class="datos">
-      <strong>Usuario</strong><br>
-      <span>usuario@email.com</span>
-    </div>
-  </div>
 </div>
 
 <div id="menu-overlay" class="menu-overlay hidden" onclick="toggleMenu()"></div>
@@ -59,6 +54,7 @@
   <footer>
     <p>Elige con cabeza. Vive con intención.</p>
   </footer>
+<div id="toast" class="toast hidden"></div>
 
   <script src="app.js"></script>
 </body>

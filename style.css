@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   color: #333;
   margin: 0;
   padding: 0;
@@ -11,9 +11,20 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px; /* antes 15px */
-  background-color: white;
+  padding: 15px; /* antes 15px */
+  background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.logo-img{
+  height: 35px;                  /* ajusta si necesitas */
 }
 a.tab {
   text-decoration: none;
@@ -210,22 +221,25 @@ footer {
   color: #1f1f1f;
 }
 
-.bloque-opciones input {
-  border: none;
-  border-bottom: 2px solid #ccc;
-  width: 80%;
-  margin: 10px auto;
-  font-weight: bold;
-  color: #1f1f1f;
-  background: none;
-  text-align: center;
-  font-size: 1em;
-  outline: none;
-  transition: border-color 0.3s;
+.bloque-opciones input{
+  border:1px solid #e2e2e6;
+  border-radius:24px;
+  padding:12px 16px;
+  width:80%;
+  margin:8px auto;
+  background:#fafafb;
+  font-size:1em;
+  text-align:center;
+  outline:none;
+  transition:border .25s,box-shadow .25s;
 }
-
-.bloque-opciones input:focus {
-  border-color: #a78bfa;
+.bloque-opciones input:focus{
+  border:1px solid #a78bfa;
+  box-shadow:0 0 0 3px rgba(167,139,250,.25);
+}
+.bloque-opciones input::placeholder{
+  color:#aaa;
+  font-style:italic;
 }
 
 .bloque-opciones + .btn-link {
@@ -477,3 +491,148 @@ footer {
   padding-left:20px;
 }
 .user-link:hover{opacity:.7;}
+
+
+
+/* ------- LOGIN PAGE -------- */
+.login-body{
+  background:#f8f8fc;
+}
+.login-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:15px 18px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+.login-panel{
+  width:90%;max-width:300px;margin:30px auto;text-align:center;
+}
+.login-title{
+  font-size:1.2rem;font-weight:900;margin:15px 0 25px;
+}
+.login-subtitle{margin-top:25px;font-size:1.1rem;}
+.login-panel label{
+  display:block;text-align:left;font-weight:800;font-size:.85rem;margin-top:18px;
+}
+.login-panel input{
+  width:100%;padding:10px;border:none;border-bottom:2px solid #ccc;
+  background:none;font-weight:bold;font-size:1rem;outline:none;
+}
+.login-panel input:focus{border-color:#a78bfa;}
+.btn-login{width:100%;margin-top:25px;}
+.btn-light{
+  width:100%;background:#fff;color:#000;border:2px solid #7e3ff2;font-weight:700;
+  padding:10px 0;border-radius:8px;margin-top:10px;cursor:pointer;
+}
+.btn-home{display:block;width:100%;margin-top:40px;text-decoration:none;text-align:center;}
+
+
+/* --- wizard registro --- */
+.paso.hidden{display:none;}
+#barra-pasos{display:flex;justify-content:center;gap:8px;margin-bottom:25px;}
+.step-dot{
+  width:10px;height:10px;border-radius:50%;background:#d4d4d8;transition:.3s;}
+.step-dot.active{background:#7e3ff2;}
+/* selects */
+select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;}
+
+.opcion-radio{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:18px 0;
+  font-weight:800;
+}
+.opcion-radio input{
+  accent-color:#7e3ff2;      /* radio morado a juego */
+  transform:scale(1.2);
+}
+
+
+.btn-mini{
+  display:inline-block;
+  background:#fff;
+  border:2px solid #7e3ff2;
+  color:#7e3ff2;
+  font-weight:700;
+  font-size:.8rem;
+  padding:6px 14px;
+  border-radius:6px;
+  text-decoration:none;
+  margin:8px 0 14px;
+  cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.btn-mini:hover{
+  background:#7e3ff2;
+  color:#fff;
+}
+
+
+/* ---- PERFIL ---- */
+.perfil-panel{width:90%;max-width:320px;margin:30px auto;text-align:center;}
+.perfil-title{font-size:1.3rem;font-weight:900;margin:10px 0 6px;}
+.perfil-nombre{color:#6b21a8;font-size:1.1rem;margin-bottom:4px;}
+.perfil-email{font-weight:bold;margin-bottom:16px;}
+.perfil-sub{margin:26px 0 10px;font-size:1rem;font-weight:800;}
+.habitos-box{margin-bottom:30px;}
+
+/* ----- PERFIL LAYOUT ------ */
+.perfil-section{
+  max-width:480px;
+  margin:0 auto 40px;
+  text-align:left;
+}
+
+.perfil-greeting{
+  font-size:1.4em;
+  font-weight:700;
+  color:#5b2cd2;     /* lila que usas en tabs */
+  margin:0 0 4px 0;
+}
+
+.perfil-mail{
+  margin:0 0 12px 0;
+  font-weight:500;
+  color:#333;
+}
+
+
+.perfil-sub{
+  font-size:1.4em;
+  font-weight:700;
+  margin:0 0 12px 0;
+  color:#1f1f1f;
+}
+
+.habit-pill{
+  background:#f0f0f3;
+  border-radius:999px;
+  padding:10px 18px;
+  margin:8px 0;
+  font-weight:500;
+}
+
+/* Botón mini consistente con tu esquema lila */
+.btn-mini{
+  display:inline-block;
+  margin-top:14px;
+  padding:8px 20px;
+  font-size:.9em;
+  color:#6536ff;
+  background:#fff;
+  border:2px solid #a78bfa;
+  border-radius:8px;
+  cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.btn-mini:hover{
+  background:#a78bfa;
+  color:#fff;
+}
+
+
+/* Alinea botones mini levemente a la derecha */
+.btn-right{
+  text-align:right;          /* coloca el botón a la derecha del bloque */
+  max-width:480px;           /* mismo ancho del section para que no se pegue al borde */
+  margin:0 auto;             /* centra el contenedor principal */
+}
