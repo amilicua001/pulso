@@ -1,62 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link rel="icon" href="fav.png" type="image/png">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>PULSO · Iniciar sesión</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="login-body">
 
-  <!-- CABECERA REDUCIDA -->
 <header>
   <a id="headerUser" class="user-link">Iniciar sesión</a>
   <a href="index.html" class="logo">
-      <img src="logo-pulso.png" alt="Pulso logo" class="logo-img">
+    <img src="logo-pulso.png" alt="Pulso logo" class="logo-img">
   </a>
   <div class="menu-button" onclick="toggleMenu()">☰</div>
 </header>
 
+<!-- menú lateral -->
 <div id="menu-lateral" class="menu-lateral hidden">
-<div class="cerrar-x" onclick="toggleMenu()">✕</div>
-  <div class="menu-header">
-<p id="saludo-menu">Hola, invitado!</p>
-  </div>
+  <div class="cerrar-x" onclick="toggleMenu()">✕</div>
+  <div class="menu-header"><p id="saludo-menu">Hola, invitado!</p></div>
   <ul class="menu-opciones">
-    <li><a href="index.html"> <span></span>Inicio</a></li>
-    <li><a href="historial.html"><span></span> Historial</a></li>
-    <li><a href="perfil.html"><span></span> Editar perfil</a></li>
-    <li><a href="#"><span></span> Ayuda</a></li>
-    <li><a href="#"><span></span> Ajustes</a></li>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="historial.html">Historial</a></li>
+    <li><a href="perfil.html">Editar perfil</a></li>
+    <li><a href="#">Ayuda</a></li>
+    <li><a href="#">Ajustes</a></li>
   </ul>
-  
 </div>
 <div id="menu-overlay" class="menu-overlay hidden" onclick="toggleMenu()"></div>
 
+<!-- panel de login -->
+<main class="login-panel">
+  <h2 class="login-title">INICIA SESIÓN</h2>
 
-  <!-- FORMULARIO -->
-  <main class="login-panel">
+<label class="campo">
+  <span class="etq">EMAIL</span>
+  <input id="login-email"
+         class="input-pill"              
+         type="email"
+         placeholder="correo@ejemplo.com">
+</label>
 
-    <h2 class="login-title">INICIA SESIÓN</h2>
+<label class="campo">
+  <span class="etq">CONTRASEÑA</span>
+  <input id="login-pass"
+         class="input-pill"
+         type="password"
+         placeholder="••••••">
+</label>
+  <!-- botón pequeño pegado al campo -->
+  <button id="btnLogin"
+          class="btn-mini-grad btn-login-mini"
+          onclick="login()">
+    INICIAR&nbsp;SESIÓN
+  </button>
+  <!-- Login con Google -->
 
-    <label>EMAIL
-      <input id="login-email" type="email" placeholder="correo@ejemplo.com">
-    </label>
+  <div id='login-form-actions'> 
+<button id="googleBtn" class="btn-google">
+  <img src="google.png" alt="" class="glogo"> <!-- 20 px aprox -->
+  CONTINUAR CON GOOGLE
+</button>
 
-    <label>CONTRASEÑA
-      <input id="login-pass" type="password" placeholder="········">
-    </label>
 
-    <button class="btn-grad btn-login" onclick="login()">INICIAR SESIÓN</button>
+  <a href="registro.html" class="btn-reg">REGISTRARSE</a>
+</div> 
 
-    <a href="registro.html" class="btn-mini">Registrarse</a>
-    <p class="login-footer">Que empiece la magIA</p>
-    <a href="index.html" class="btn-grad btn-home">PÁGINA PRINCIPAL</a>
-  </main>
+  <p id='frase' class="login-footer">Que empiece la magIA</p>
+  <a href="index.html" class="btn-grad btn-home">PÁGINA PRINCIPAL</a>
+</main>
 
-  <!-- TOAST -->
-  <div id="toast" class="toast hidden"></div>
+<!-- toast -->
+<div id="toast" class="toast hidden"></div>
 
-  <script src="app.js"></script>
+<!-- script genérico (menú, etc.) -->
+<script src="app.js" defer></script>
+
+<!-- lógica Supabase -->
+<script type="module">
+  import {
+    signInEmail, loginWithGoogle, getCurrentUser,
+    listenToAuthChanges, logout
+  } from './supabase-auth.js';
+
+  /* helpers UI */
+  const $ = s => document.querySelector(s);
+  const toast = m => { const t=$('#toast'); if(!t) return;
+    t.textContent=m; t.classList.remove('hidden'); t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2500);
+  };
+
+  /* header dinámico */
+  const hd = $('#headerUser'), sal = $('#saludo-menu');
+  const pintar = u => {
+    if(u){ hd.textContent='Salir'; hd.onclick=logout;
+      sal.textContent=`Hola, ${u.user_metadata?.nombre||u.email}!`; }
+    else{ hd.textContent='Iniciar sesión'; hd.onclick=()=>location.href='login.html';
+      sal.textContent='Hola, invitado!'; }
+  };
+  getCurrentUser().then(pintar); listenToAuthChanges(pintar);
+
+  /* iniciar sesión con Google */
+  $('#googleBtn').addEventListener('click', loginWithGoogle);
+
+  /* función de login email/pass – expuesta a window para el onclick */
+  window.login = async () => {
+    const email  = $('#login-email').value.trim();
+    const pass   = $('#login-pass').value;
+
+    if(!email || !pass){ toast('Introduce email y contraseña'); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ toast('Email no válido'); return; }
+
+    try{
+      await signInEmail({ email, password: pass });
+      /* redirige cuando Supabase confirme la sesión */
+      listenToAuthChanges(u => { if(u) location.href='index.html'; });
+    }catch(err){
+      $('#login-pass').value = '';
+      const msg = err?.error_description || err?.message || 'Credenciales incorrectas';
+      toast(msg); console.error('[Login error]', err);
+    }
+  };
+
+  /* si ya hay sesión, no mostramos login */
+  getCurrentUser().then(u => { if(u) location.href='index.html'; });
+</script>
 </body>
 </html>

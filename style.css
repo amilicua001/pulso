@@ -7,15 +7,23 @@ body {
   text-align: center;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px; /* antes 15px */
-  background-color: #ffffff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 
+  /* elimina padding izquierdo/derecho */
+  padding:18px 0;          /* 12 px arriba y abajo, 0 a los lados */
+
+  background:#fff;
+  box-shadow:0 2px 5px rgba(0,0,0,.1);
 }
+ header .logo,
+header .menu-button,
+header .user-link{
+  margin:0 5px;           /* izquierda y derecha */
+}
+
 
 .logo{
   display:flex;
@@ -24,7 +32,7 @@ header {
 }
 
 .logo-img{
-  height: 35px;                  /* ajusta si necesitas */
+  height: 30px;                  /* ajusta si necesitas */
 }
 a.tab {
   text-decoration: none;
@@ -125,12 +133,12 @@ footer {
   font-size: 1.1em;
   padding: 10px 20px;
   cursor: pointer;
-  color: #a78bfa;
+  color: #1d21ff;
   transition: all 0.3s;
 }
 
 .tab.active {
-  color: #4c1d95;
+  color: #0a0a73;
 }
 
 /* FRASES */
@@ -143,23 +151,29 @@ footer {
 .frase-motivadora {
   font-size: 1.3em;
   font-style: italic;
-  color: #6b21a8;
-  margin: 20px 0;
+  color: #1d21ff;
+  margin: 10px 0;
 }
 
-.footer-frase {
-  margin-top: 80px;
-  margin-bottom: 10px;
-  color: #888;
-  font-size: 1.1em;
-  font-weight: 500;
+.footer-frase{
+    margin-top:100px;    /* desplaza la frase hacia abajo */
+    margin-bottom:10px;  /* mantén este valor como está */
+    color:#888;
+    font-size:1.1em;
+    font-weight:500;
 }
+
 
 /* BOTONES BONITOS */
 .btn-grad {
-  background: linear-gradient(to right, #7e3ff2, #f72ea7);
+    background: linear-gradient(90deg,
+              #000000 0%,
+              #000000 15%,
+              #0a0a73 45%,
+              #1011b5 75%,
+              #1d21ff 100%);
   color: white;
-  padding: 12px 24px;
+  padding: 14px 70px;
   font-weight: bold;
   border: none;
   border-radius: 8px;
@@ -172,7 +186,14 @@ footer {
 }
 
 .btn-secundario {
-  background: linear-gradient(to right, #8b5cf6, #ec4899);
+    /* degradado negro-azul-violeta */
+  background: linear-gradient(90deg,
+              #000000 0%,
+              #000000 15%,
+              #0a0a73 45%,
+              #1011b5 75%,
+              #1d21ff 100%);
+
   color: white;
   margin: 10px;
   padding: 10px 18px;
@@ -184,12 +205,17 @@ footer {
   text-align: center;
 }
 
+.btn-secundario:hover {
+  transform: scale(1.05);   /* si quieres un “zoom” ligero */
+}
+
+
 /* BOTONES FOOTER */
 .botones-footer {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 40px 0 60px;
+  margin: 20px 0 60px;
 }
 
 .pantalla {
@@ -234,7 +260,7 @@ footer {
   transition:border .25s,box-shadow .25s;
 }
 .bloque-opciones input:focus{
-  border:1px solid #a78bfa;
+  border:1px solid #1d21ff;
   box-shadow:0 0 0 3px rgba(167,139,250,.25);
 }
 .bloque-opciones input::placeholder{
@@ -251,7 +277,7 @@ footer {
 .btn-link {
   background: none;
   border: none;
-  color: #a78bfa;
+  color: #1d21ff;
   font-weight: bold;
   cursor: pointer;
   font-size: 1em;
@@ -273,7 +299,7 @@ footer {
 .frase-lila {
   margin-top: 25px;
   font-size: 0.9em;
-  color: #c4b5fd;
+  color: #1d21ff;
 }
 
 #resultado-contenedor {
@@ -281,11 +307,16 @@ footer {
 }
 
 .resultado-box {
-  background: linear-gradient(to right, #7e3ff2, #f72ea7);
+    background: linear-gradient(90deg,
+              #000000 0%,
+              #000000 15%,
+              #0a0a73 45%,
+              #1011b5 75%,
+              #1d21ff 100%);
   color: white;
   border-radius: 12px;
   padding: 20px;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -322,7 +353,12 @@ footer {
 
 .resultado-box {
   position: relative; /* necesario para posicionar el botón dentro */
-  background: linear-gradient(to right, #7e3ff2, #f72ea7);
+    background: linear-gradient(90deg,
+              #000000 0%,
+              #000000 15%,
+              #0a0a73 45%,
+              #1011b5 75%,
+              #1d21ff 100%);
   color: white;
   border-radius: 12px;
   padding: 30px 20px 50px;
@@ -345,8 +381,12 @@ footer {
   right: 0; /* CAMBIO CLAVE */
   width: 220px;
   height: 100%;
-  background-color: #1e005f;
-  color: white;
+  background: linear-gradient(90deg,
+            #000000 0%,
+              #000000 85%,
+              #0a0a73 90%,
+              #1011b5 95%,
+              #1d21ff 100%);  color: white;
   z-index: 9999;
   padding: 20px 15px;
   transform: translateX(100%); /* Se oculta hacia la derecha */
@@ -413,6 +453,9 @@ footer {
 #resultado-contenedor {
   z-index: 1;
   position: relative;
+}
+#borrar{
+  margin: 10px 0 5px;
 }
 
 
@@ -488,51 +531,19 @@ footer {
   text-decoration:none;
   cursor:pointer;
   transition:opacity .2s;
-  padding-left:20px;
+  padding-left:5px;
 }
 .user-link:hover{opacity:.7;}
 
-
-
-/* ------- LOGIN PAGE -------- */
-.login-body{
-  background:#f8f8fc;
-}
-.login-header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:15px 18px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.06);
-}
-.login-panel{
-  width:90%;max-width:300px;margin:30px auto;text-align:center;
-}
-.login-title{
-  font-size:1.2rem;font-weight:900;margin:15px 0 25px;
-}
-.login-subtitle{margin-top:25px;font-size:1.1rem;}
-.login-panel label{
-  display:block;text-align:left;font-weight:800;font-size:.85rem;margin-top:18px;
-}
-.login-panel input{
-  width:100%;padding:10px;border:none;border-bottom:2px solid #ccc;
-  background:none;font-weight:bold;font-size:1rem;outline:none;
-}
-.login-panel input:focus{border-color:#a78bfa;}
-.btn-login{width:100%;margin-top:25px;}
-.btn-light{
-  width:100%;background:#fff;color:#000;border:2px solid #7e3ff2;font-weight:700;
-  padding:10px 0;border-radius:8px;margin-top:10px;cursor:pointer;
-}
-.btn-home{display:block;width:100%;margin-top:40px;text-decoration:none;text-align:center;}
-
-
 /* --- wizard registro --- */
 .paso.hidden{display:none;}
-#barra-pasos{display:flex;justify-content:center;gap:8px;margin-bottom:25px;}
+#barra-pasos{display:flex;justify-content:center;gap:8px;margin:15px 0 10px;}
 .step-dot{
   width:10px;height:10px;border-radius:50%;background:#d4d4d8;transition:.3s;}
-.step-dot.active{background:#7e3ff2;}
+.step-dot.active{background:#0a0a73;}
 /* selects */
 select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;}
+
 
 .opcion-radio{
   display:flex;
@@ -542,7 +553,7 @@ select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;}
   font-weight:800;
 }
 .opcion-radio input{
-  accent-color:#7e3ff2;      /* radio morado a juego */
+  accent-color:#1d21ff;      /* radio morado a juego */
   transform:scale(1.2);
 }
 
@@ -550,8 +561,8 @@ select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;}
 .btn-mini{
   display:inline-block;
   background:#fff;
-  border:2px solid #7e3ff2;
-  color:#7e3ff2;
+  border:2px solid #1d21ff;
+  color:#1d21ff;
   font-weight:700;
   font-size:.8rem;
   padding:6px 14px;
@@ -562,7 +573,7 @@ select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;}
   transition:background .2s,color .2s;
 }
 .btn-mini:hover{
-  background:#7e3ff2;
+  background:#1d21ff;
   color:#fff;
 }
 
@@ -570,7 +581,7 @@ select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;}
 /* ---- PERFIL ---- */
 .perfil-panel{width:90%;max-width:320px;margin:30px auto;text-align:center;}
 .perfil-title{font-size:1.3rem;font-weight:900;margin:10px 0 6px;}
-.perfil-nombre{color:#6b21a8;font-size:1.1rem;margin-bottom:4px;}
+.perfil-nombre{color:#0a0a73;font-size:1.1rem;margin-bottom:4px;}
 .perfil-email{font-weight:bold;margin-bottom:16px;}
 .perfil-sub{margin:26px 0 10px;font-size:1rem;font-weight:800;}
 .habitos-box{margin-bottom:30px;}
@@ -585,7 +596,7 @@ select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;}
 .perfil-greeting{
   font-size:1.4em;
   font-weight:700;
-  color:#5b2cd2;     /* lila que usas en tabs */
+  color:#0a0a73;     /* lila que usas en tabs */
   margin:0 0 4px 0;
 }
 
@@ -593,6 +604,12 @@ select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;}
   margin:0 0 12px 0;
   font-weight:500;
   color:#333;
+}
+
+.perfil-basic{
+  max-width:480px;     /* igual que las secciones de hábitos */
+  margin:0 auto 14px;
+  text-align:left;
 }
 
 
@@ -617,15 +634,15 @@ select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;}
   margin-top:14px;
   padding:8px 20px;
   font-size:.9em;
-  color:#6536ff;
+  color:#0a0a73;
   background:#fff;
-  border:2px solid #a78bfa;
+  border:2px solid #1d21ff;
   border-radius:8px;
   cursor:pointer;
   transition:background .2s,color .2s;
 }
 .btn-mini:hover{
-  background:#a78bfa;
+  background:#1d21ff;
   color:#fff;
 }
 
@@ -635,4 +652,230 @@ select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;}
   text-align:right;          /* coloca el botón a la derecha del bloque */
   max-width:480px;           /* mismo ancho del section para que no se pegue al borde */
   margin:0 auto;             /* centra el contenedor principal */
+}
+
+/* ---- ajustes rápidos para la nueva vista de perfil ---- */
+.perfil-greeting{ font-size:1.4em;font-weight:700;color:#0a0a73;margin:20px 0 4px }
+.perfil-mail{    font-weight:600;margin:0 0 24px;color:#444 }
+#prioInput{      width:90%;max-width:280px;padding:10px;border:none;border-bottom:2px solid #ccc;outline:none;font-size:1em;margin:20px auto }
+#prioInput:focus{border-color:#1d21ff}
+
+
+
+/* ==== INDEX – Re-maquetar la sección de inicio ==== */
+
+/* 1️⃣  CONTENEDOR PRINCIPAL */
+#pantalla-inicio{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+
+  min-height:calc(100vh - 160px);
+  padding:24px 0 0;    
+}
+
+/* 2️⃣  LAS TABS (INFORMADO / ALEATORIO) – las acercamos al logo */
+#pantalla-inicio .tabs{
+  margin:-10px 0 40px;         /* ⬆️ margin-top mucho menor       */
+}
+
+#pantalla-inicio .btn-grad{
+  margin: -60px 0 0;
+}
+
+/* 3️⃣  BOTONES HISTORIAL / PERFIL – se anclan abajo            */
+#pantalla-inicio .botones-footer{
+  /*margin-top:auto;           /* Empuja todo lo anterior hacia arriba 
+  margin-bottom:8px;        /* Distancia del borde inferior          */
+  margin: -70px 0 -40px;
+}
+
+
+
+/*=========INFORMADO Y ALEATORIO============*/
+
+/* 1️⃣ Contenedor principal – ocupa toda la altura */
+#pantalla-informada,
+#pantalla-aleatoria{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  min-height:calc(100vh - 160px); /* 160 ≈ header + margen inferior */
+  padding:24px 0 0;
+}
+
+/* 2️⃣ Tabs más pegadas al header */
+#pantalla-informada .tabs,
+#pantalla-aleatoria .tabs{
+  margin:-10px 0 30px;
+}
+
+#pantalla-informada .bloque-opciones,
+#pantalla-aleatoria .bloque-opciones{
+  margin:-50px 0 30px;           /* igual que hiciste en index */
+}
+
+/* 3️⃣ Ajustar posición del botón principal si quieres “subirlo/bajarlo” */
+#pantalla-informada .btn-grad,
+#pantalla-aleatoria .btn-grad{
+  margin:-50px 0 20px;           /* igual que hiciste en index */
+}
+
+/* 4️⃣ Botones Historial / Perfil anclados abajo */
+#pantalla-informada .botones-footer,
+#pantalla-aleatoria .botones-footer{
+  margin:-50px 0 -40px;        /* juega con los valores hasta que encaje */
+}
+
+
+
+/*====================LOGIN=====LOGIN=====LOGIN=====LOGIN====LOGIN=====LOGIN==============================*/
+
+/*---------------   NUEVO FORMATO INPUT -------------------*/
+.campo{ position:relative; margin:22px 0; text-align:left; }
+.campo .etq{
+  display:block; font-weight:800; font-size:0.85rem;
+  margin-bottom:6px; color:#0a0a73;
+}
+
+.campo{
+  position:relative;
+  width:80%;          /* << añade esto */
+  margin:22px 0;
+  max-width: 80px;
+  text-align:left;
+}
+
+.input-pill{
+  width:100%; padding:12px 14px;
+  background:#f9f7f7;            /* “bocadillo” gris muy claro */
+  border:none; border-radius:999px;
+  font-weight:500; font-size:1rem;
+  outline:none;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+
+}
+.input-pill:focus{ box-shadow:0 0 0 0 rgba(29,33,255,.25); }
+
+/*---------------   BOTÓN INICIAR SESIÓN MINI -------------*/
+#login-pass{ padding-right:135px; }
+
+/* posición del botón mini */
+.btn-login-mini{
+  position:absolute;
+  right:20px;           /* antes -2px */
+  top:50%;
+  transform:translateY(-50%);
+  padding:10px;    /* algo más alto */
+  background:linear-gradient(90deg,#000 0%,#000 15%,#0a0a73 45%,#1d21ff 100%);
+  font-weight: bold;
+  border-radius:15px;
+   font-size: 0.95rem;
+}
+
+
+/*---------------   BOTÓN GOOGLE --------------------------*/
+.btn-google{
+  display:flex; align-items:center; justify-content:center;
+  gap:10px;                       /* icono separado del texto */
+  width:100%; max-width:300px;
+  background:#fff; color:#0a0a73;
+  border:5px solid #0a0a73;
+  border-radius:999px;
+  font-weight:700;
+  text-align: center;
+  padding:10px ;
+  margin: 70px auto 10px;
+}
+.btn-google:hover{ background:#f8f8ff; }
+
+.btn-reg{
+      background: linear-gradient(90deg,
+              #000000 0%,
+              #000000 15%,
+              #0a0a73 45%,
+              #1011b5 75%,
+              #1d21ff 100%);
+  color: white;
+  padding: 14px 70px;
+  font-weight: bold;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-decoration:none;
+  display:block;
+  width:80%;
+  max-width:120px;
+  margin:20px auto 0;
+  text-align: center;
+}
+
+/* icono Google */
+.glogo{ width:20px; height:20px; }
+
+/* 1. Campo de contraseña: espacio reservado al mini-botón */
+#login-pass{ padding-right:130px; }
+
+/* 2. Botón mini “INICIAR SESIÓN” (encima del input) */
+.btn-login-mini{
+  max-width:120px;
+  font-size:.85rem;
+  margin:-5px 0 40px;
+}
+.login-title{
+  margin:-80px 0 0;
+}
+
+
+
+/* 5. Home: ancho igual que los demás y separado */
+.btn-home{
+  width:100%;
+  max-width:340px;
+  text-decoration: none;
+  width:80%; max-width:340px;        /* antes era 100 % */
+  margin:550px 0 0;
+
+}
+
+/* 6. Grupo central (Google + Registro): aire extra */
+#login-form-actions{   /* pon un id o clase al div que envuelve ambos */
+  margin-top:40px;
+  margin-bottom:60px;
+}
+#frase{
+  margin:0 0 30px;
+}
+
+/* panel de login centrado */
+.login-panel{
+  width:90%;           /* responsive                  */
+  max-width:340px;     /* mismo ancho que los inputs  */
+  margin:100px auto 0; /* separación del header       */
+  text-align:center;
+}
+
+
+/*========================REGISTRO====================*/
+.opcion-radio{
+  display:grid;
+  grid-template-columns: 1fr auto; /* texto ocupa todo, radio lo justo */
+  align-items:center;              /* verticalmente centrado */
+  margin:18px 0;
+  font-weight:700;
+  column-gap:18px;                 /* separación texto-radio */
+}
+
+/* estilismo radio igual que antes */
+.opcion-radio input{
+  accent-color:#0a0a73;
+  transform:scale(1.25);
+}
+
+#paso-2 .opcion-radio{
+  padding-inline: 10px 50px;  /* 40 px a la izquierda, 20 px a la derecha */
 }

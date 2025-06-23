@@ -1,108 +1,162 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <link rel="icon" href="fav.png" type="image/png">
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>PULSO · Mi perfil</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- pastilla editable con etiqueta --- */
+    .habit-row{ margin:10px 0; text-align:center; }
+    .habit-row span{ display:block; font-size:.85em; font-weight:700; margin-bottom:4px; }
+    .pill-input{
+      background:#efeff3;
+      border:none;
+      border-radius:999px;
+      padding:12px 18px;
+      font-weight:600;
+      width:100%; max-width:320px;
+      text-align:center; box-sizing:border-box;
+    }
+    .pill-input:focus{ outline:none;
+      box-shadow:0 0 0 3px rgba(167,139,250,.35); }
+    /* botón guardar oculto por defecto */
+    #btnSaveHab.hidden{ display:none; }
+  </style>
 </head>
 <body>
+
 <header>
   <a id="headerUser" class="user-link">Iniciar sesión</a>
-  <a href="index.html" class="logo">
-      <img src="logo-pulso.png" alt="Pulso logo" class="logo-img">
-  </a>
+  <a href="index.html" class="logo"><img src="logo-pulso.png" class="logo-img" alt="Pulso"></a>
   <div class="menu-button" onclick="toggleMenu()">☰</div>
 </header>
+
 <div id="menu-lateral" class="menu-lateral hidden">
   <div class="cerrar-x" onclick="toggleMenu()">✕</div>
-  <div class="menu-header">
-<p id="saludo-menu">Hola, invitado!</p>
-  </div>
+  <div class="menu-header"><p id="saludo-menu">Hola, invitado!</p></div>
   <ul class="menu-opciones">
-    <li><a href="index.html"><span></span> Inicio</a></li>
-    <li><a href="historial.html"><span></span> Historial</a></li>
-    <li><a href="perfil.html"><span></span> Editar perfil</a></li>
-    <li><a href="#"><span></span> Ayuda</a></li>
-    <li><a href="#"><span></span> Ajustes</a></li>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="historial.html">Historial</a></li>
+    <li><a href="perfil.html">Editar perfil</a></li>
+    <li><a href="#">Ayuda</a></li>
+    <li><a href="#">Ajustes</a></li>
   </ul>
-  
 </div>
-
 <div id="menu-overlay" class="menu-overlay hidden" onclick="toggleMenu()"></div>
 
-<!-- panel -->
-<main class="perfil-panel">
+<main style="max-width:480px;margin:40px auto;text-align:center">
+  <h1 style="font-size:1.6em;font-weight:900;margin-bottom:18px">MI PERFIL</h1>
 
-  <h2 class="perfil-title">MI PERFIL</h2>
+  <h2 id="greeting"  class="perfil-greeting"></h2>
+  <p  id="greetMail" class="perfil-mail" style="margin-top:-6px"></p>
 
-  <!-- visible con sesión -->
-  <div id="perfil-con-sesion" class="hidden">
-    <h3 id="perfil-nombre" class="perfil-nombre"></h3>
-    <p  id="perfil-email"  class="perfil-email"></p>
-    <div class="btn-right">
-       <button class="btn-mini" onclick="togglePass()">Cambiar contraseña</button>
-    </div>
+  <h3 class="perfil-sub" style="margin:26px 0 12px">Tus hábitos:</h3>
 
-    <!-- form pass -->
-    <div id="box-pass" class="hidden">
-      <input id="pass-actual" type="password" placeholder="Contraseña actual">
-      <input id="pass-nueva"  type="password" placeholder="Contraseña nueva">
-      <button class="btn-grad btn-mini" onclick="guardarPassword()">Guardar</button>
-    </div>
+  <!-- ── Habitos en formato pastilla editable ── -->
+  <section style="max-width:320px;margin:0 auto 24px">
+    <label class="habit-row">
+      <span>Horas de sueño</span>
+      <input id="inpSueno" class="pill-input" type="number" min="3" max="15" placeholder="3-15">
+    </label>
 
-    <!-- hábitos modo vista -->
-<!--  HÁBITOS – modo vista  -->
-<section id="habitos-vista" class="perfil-section">
-  <h3 class="perfil-sub">Hábitos:</h3>
+    <label class="habit-row">
+      <span>Ejercicio / semana</span>
+      <input id="inpEj" class="pill-input" type="number" min="0" max="7" placeholder="0-7">
+    </label>
 
-  <div class="habit-pill" id="vista-sueno"></div>
-  <div class="habit-pill" id="vista-ej"></div>
-  <div class="habit-pill" id="vista-prio"></div>
+    <label class="habit-row">
+      <span>Prioridad</span>
+      <select id="selPrio" class="pill-input">
+        <option value="">Seleccionar…</option>
+        <option value="salud">Salud</option>
+        <option value="ocio">Ocio</option>
+        <option value="productividad">Productividad</option>
+      </select>
+    </label>
+  </section>
 
-  <div class="btn-right">
-    <button class="btn-mini" onclick="toggleHabitos()">Editar hábitos</button>
-  </div>
-
-</section>
-
-
-    <!-- hábitos modo edición -->
-    <div id="habitos-editar" class="hidden">
-      <label>Horas de sueño</label>
-      <div class="opcion-radio"><input type="radio" name="p-sueno" value="<6"><span>&lt; 6 h</span></div>
-      <div class="opcion-radio"><input type="radio" name="p-sueno" value="6-8"><span>6-8 h</span></div>
-      <div class="opcion-radio"><input type="radio" name="p-sueno" value=">8"><span>&gt; 8 h</span></div>
-
-      <label style="margin-top:12px;">Frecuencia de ejercicio</label>
-      <div class="opcion-radio"><input type="radio" name="p-ej" value="0"><span>Nunca</span></div>
-      <div class="opcion-radio"><input type="radio" name="p-ej" value="1-2"><span>1-2 / semana</span></div>
-      <div class="opcion-radio"><input type="radio" name="p-ej" value="3-5"><span>3-5 / semana</span></div>
-      
-      <label style="margin-top:12px;">Prioridad</label>
-      <div class="opcion-radio"><input type="radio" name="p-prio" value="salud"><span>Salud</span></div>
-      <div class="opcion-radio"><input type="radio" name="p-prio" value="productividad"><span>Productividad</span></div>
-      <div class="opcion-radio"><input type="radio" name="p-prio" value="ocio"><span>Ocio</span></div>
-
-      <button class="btn-grad btn-mini" onclick="guardarHabitosPerfil()">Guardar</button>
-    </div>
-
-    <div class="botones-footer">
-      <a href="historial.html" class="btn-secundario">HISTORIAL 🔍</a>
-      <a href="index.html"      class="btn-secundario">INICIO 🏠</a>
-    </div>
-  </div>
-
-  <!-- visible SIN sesión -->
-  <div id="perfil-sin-sesion" class="hidden">
-    <p> Inicia sesión para visualizar/editar tu perfil</p>
-    <a href="login.html" class="btn-mini">Iniciar sesión</a>
-  </div>
-
+  <button id="btnSaveHab" class="btn-grad hidden" style="width:100%;max-width:220px">
+    Guardar hábitos
+  </button><br>
+  <button id="btnLogout" class="btn-mini" style="width:100%;max-width:220px;margin-top:14px">
+    Cerrar sesión
+  </button>
 </main>
 
+<div class="botones-footer" style="margin-top:40px">
+  <a href="historial.html" class="btn-secundario">HISTORIAL 🔍</a>
+  <a href="index.html"     class="btn-secundario">INICIO 🏠</a>
+</div>
 
 <div id="toast" class="toast hidden"></div>
-<script src="app.js"></script>
+
+<!-- ── JS de perfil (sin cambios de lógica) ── -->
+<script type="module">
+  import {
+    getCurrentUser, listenToAuthChanges,
+    fetchProfile, updateHabits, logout as supaLogout
+  } from './supabase-auth.js';
+
+  const $ = s=>document.querySelector(s);
+  const toast = m=>{ const t=$('#toast'); if(!t) return;
+                     t.textContent=m; t.classList.remove('hidden');
+                     t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); };
+
+  let orig = { sueno:null, ejercicio:null, prioridad:null };
+
+  async function paint(){
+    const p = await fetchProfile();
+    orig = { sueno:p.sueno??'', ejercicio:p.ejercicio??'', prioridad:p.prioridad??'' };
+    $('#inpSueno').value = orig.sueno;
+    $('#inpEj').value    = orig.ejercicio;
+    $('#selPrio').value  = orig.prioridad;
+    checkChanges();
+  }
+
+  function pintarHeader(u){
+    const hd=$("#headerUser"), sal=$("#saludo-menu");
+    if(u){
+      hd.textContent='Salir'; hd.onclick=logoutGlobal;
+      if(sal) sal.textContent=`Hola, ${u.user_metadata?.nombre||u.email.split('@')[0]}!`;
+      $("#greeting").textContent=`Hola, ${u.user_metadata?.nombre||u.email.split('@')[0]}!`;
+      $("#greetMail").textContent=u.email;
+      paint();
+    }else{
+      hd.textContent='Iniciar sesión'; hd.onclick=()=>location.href='login.html';
+      if(sal) sal.textContent='Hola, invitado!';
+    }
+  }
+  getCurrentUser().then(pintarHeader);
+  listenToAuthChanges(pintarHeader);
+
+  async function logoutGlobal(){ try{ await supaLogout(); }catch{} localStorage.clear(); location.href='login.html'; }
+
+  const checkChanges = ()=>{
+    const s=$('#inpSueno').value.trim(), e=$('#inpEj').value.trim(), p=$('#selPrio').value;
+    const changed = (s!==String(orig.sueno)) || (e!==String(orig.ejercicio)) || (p!==orig.prioridad);
+    $('#btnSaveHab').classList.toggle('hidden',!changed);
+  };
+  ['#inpSueno','#inpEj','#selPrio'].forEach(sel=>$(sel).addEventListener('input',checkChanges));
+
+  $('#btnSaveHab').onclick = async ()=>{
+    const s=$('#inpSueno').value.trim(), e=$('#inpEj').value.trim(), p=$('#selPrio').value;
+    if(s && (+s<3||+s>15||!Number.isInteger(+s))){ toast('Sueño 3-15'); return; }
+    if(e && (+e<0||+e>7 ||!Number.isInteger(+e))){ toast('Ejercicio 0-7'); return; }
+    if(p && !['salud','ocio','productividad'].includes(p)){ toast('Prioridad inválida'); return; }
+    try{
+      await updateHabits({
+        sueno     : s!==String(orig.sueno)     ? (+s||null) : null,
+        ejercicio : e!==String(orig.ejercicio) ? (+e||null) : null,
+        prioridad : p!==orig.prioridad        ? p          : null
+      });
+      toast('Hábitos guardados ✅'); paint();
+    }catch(err){ console.error(err); toast(err.message||'Error'); }
+  };
+  $('#btnLogout').onclick = logoutGlobal;
+</script>
+
+<script src="app.js" defer></script>
 </body>
 </html>

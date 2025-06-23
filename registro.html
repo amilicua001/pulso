@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="icon" href="fav.png" type="image/png">
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>PULSO · Registro</title>
@@ -18,102 +20,185 @@
 
 <div id="menu-lateral" class="menu-lateral hidden">
   <div class="cerrar-x" onclick="toggleMenu()">✕</div>
-  <div class="menu-header">
-<p id="saludo-menu">Hola, invitado!</p>
-  </div>
+  <div class="menu-header"><p id="saludo-menu">Hola, invitado!</p></div>
   <ul class="menu-opciones">
-    <li><a href="index.html"><span></span> Inicio</a></li>
-    <li><a href="historial.html"><span></span> Historial</a></li>
-    <li><a href="perfil.html"><span></span> Editar perfil</a></li>
-    <li><a href="#"><span></span> Ayuda</a></li>
-    <li><a href="#"><span></span> Ajustes</a></li>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="historial.html">Historial</a></li>
+    <li><a href="perfil.html">Editar perfil</a></li>
+    <li><a href="#">Ayuda</a></li>
+    <li><a href="#">Ajustes</a></li>
   </ul>
 </div>
-
 <div id="menu-overlay" class="menu-overlay hidden" onclick="toggleMenu()"></div>
 
-
 <main class="login-panel">
-
-  <!-- barra de pasos -->
+  <!-- PASO 0 — Cuenta -->
+  <section id="paso-0" class="paso">
+    <h2 class="login-title">CREA TU CUENTA</h2>
   <div id="barra-pasos">
     <span class="step-dot active"></span>
     <span class="step-dot"></span>
     <span class="step-dot"></span>
   </div>
 
-  <!-- PASO 0 — Cuenta -->
-  <section id="paso-0" class="paso">
-    <h2 class="login-title">CREA TU CUENTA</h2>
 
-    <label>Nombre
-      <input id="r-nombre" type="text" placeholder="Tu nombre">
+    <label class="campo">
+      <span class="etq">Nombre</span>
+      <input id="r-nombre"  class="input-pill" type="text" placeholder="Tu nombre">
     </label>
 
-    <label>Email
-      <input id="r-email"  type="email" placeholder="correo@ejemplo.com">
+    <label class="campo">
+      <span class="etq">Email</span>
+      <input id="r-email"  class="input-pill" type="email" placeholder="correo@ejemplo.com">
     </label>
 
-    <label>Contraseña
-      <input id="r-pass"   type="password" placeholder="········">
+    <label class="campo">
+      <span class="etq">Contraseña</span>
+      <input id="r-pass"  class="input-pill"  type="password" placeholder="······">
     </label>
-<!-- CTA aparece solo si el email ya existe -->
+
     <button class="btn-grad btn-login" onclick="guardarCuenta()">Siguiente</button>
-<div id="cta-login" class="hidden">
-  <a href="login.html" class="btn-mini">Iniciar sesión</a>
-</div>
- 
-</section>
+    <div id="cta-login" class="hidden">
+      <a href="login.html" class="btn-mini">Iniciar sesión</a>
+    </div>
+  </section>
 
   <!-- PASO 1 — Hábitos -->
   <section id="paso-1" class="paso hidden">
     <h2 class="login-title">TUS HÁBITOS</h2>
-
-    <label>Horas de sueño:</label>
-    <div class="opcion-radio">
-      <input type="radio" name="r-sueno" value="<6"  checked><span>&lt; 6h</span>
-    </div>
-    <div class="opcion-radio">
-      <input type="radio" name="r-sueno" value="6-8"><span>6-8h</span>
-    </div>
-    <div class="opcion-radio">
-      <input type="radio" name="r-sueno" value=">8"><span>&gt; 8h</span>
+    <div id="barra-pasos">
+      <span class="step-dot"></span>
+      <span class="step-dot active"></span>
+      <span class="step-dot"></span>
     </div>
 
-    <label style="margin-top:15px;">Frecuencia de ejercicio:</label>
-    <div class="opcion-radio">
-      <input type="radio" name="r-ejercicio" value="0"  checked><span>Nunca</span>
-    </div>
-    <div class="opcion-radio">
-      <input type="radio" name="r-ejercicio" value="1-2"><span>1-2/semana</span>
-    </div>
-    <div class="opcion-radio">
-      <input type="radio" name="r-ejercicio" value="3-5"><span>3-5/semana</span>
-    </div>
+    <label class="campo">
+      <span class="etq">Horas de sueño (3-15)</span>
+      <input id="r-sueno" class="input-pill"  type="number" min="3" max="15" placeholder="3-15">
+    </label>
+
+    <label class="campo">
+      <span class="etq">Días de ejercicio a la semana</span>
+      <input id="r-ejercicio" class="input-pill"  type="number" min="0" max="7" placeholder="0-7">
+    </label>
 
     <button class="btn-grad btn-login" onclick="guardarHabitos()">Siguiente</button>
   </section>
 
   <!-- PASO 2 — Preferencias -->
-  <section id="paso-2" class="paso hidden">
-    <h2 class="login-title">¿QUÉ PRIORIZAR?</h2>
+<section id="paso-2" class="paso hidden">
+  <h2 class="login-title">¿QUÉ PRIORIZAR?</h2>
 
-    <div class="opcion-radio">
-      <input type="radio" name="r-prio" value="salud"   checked><span>Salud</span>
-    </div>
-    <div class="opcion-radio">
-      <input type="radio" name="r-prio" value="product"><span>Productividad</span>
-    </div>
-    <div class="opcion-radio">
-      <input type="radio" name="r-prio" value="ocio"><span>Ocio</span>
+    <div id="barra-pasos">
+      <span class="step-dot"></span>
+      <span class="step-dot"></span>
+      <span class="step-dot active"></span>
     </div>
 
-    <button class="btn-grad btn-login" onclick="guardarPreferencias()">¡Finalizar!</button>
-  </section>
+  <label class="opcion-radio">
+      <span>Salud</span>
+      <input type="radio" name="r-prio" value="salud" checked>
+  </label>
+
+  <label class="opcion-radio">
+      <span>Productividad</span>
+      <input type="radio" name="r-prio" value="product">
+  </label>
+
+  <label class="opcion-radio">
+      <span>Ocio</span>
+      <input type="radio" name="r-prio" value="ocio">
+  </label>
+
+  <button class="btn-grad btn-login" onclick="guardarPreferencias()">¡Finalizar!</button>
+</section>
 
 </main>
 
 <div id="toast" class="toast hidden"></div>
-<script src="app.js"></script>
+<script src="app.js" defer></script>
+
+<!-- pinta cabecera según sesión -->
+<script type="module">
+  import { getCurrentUser, listenToAuthChanges, logout } from './supabase-auth.js';
+  const header=document.getElementById('headerUser'), saludo=document.getElementById('saludo-menu');
+  const pintar=u=>{
+    if(u){ header.textContent='Salir'; header.onclick=logout;
+      saludo.textContent=`Hola, ${u.user_metadata?.nombre||u.email}!`; }
+    else { header.textContent='Iniciar sesión'; header.onclick=()=>location.href='login.html';
+      saludo.textContent='Hola, invitado!'; }
+  };
+  getCurrentUser().then(pintar); listenToAuthChanges(pintar);
+</script>
+
+<!-- lógica del wizard -->
+<script type="module">
+  import { signUpEmail, getCurrentUser, updateHabits } from './supabase-auth.js';
+
+  const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+  const toast=m=>{const t=$('#toast');if(!t)return;t.textContent=m;
+    t.classList.remove('hidden');t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2500);};
+  const step=d=>$$('.step-dot').forEach((e,i)=>e.classList.toggle('active',i===d));
+
+  /* ---------- paso 0 ---------- */
+  window.guardarCuenta=async()=>{
+    const nombre=$('#r-nombre').value.trim(), email=$('#r-email').value.trim(),
+          pass=$('#r-pass').value;
+    if(!nombre||!email||!pass){toast('Completa todos los campos');return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){toast('Email no válido');return;}
+    if(email.split('@')[0].length<2){toast('2 caracteres antes de @');return;}
+    if(pass.length<6){toast('Mínimo 6 caracteres');return;}
+
+    try{
+      await signUpEmail({email,password:pass});
+      localStorage.setItem('pulsoNombreTmp',nombre);
+
+      await new Promise(r=>{
+        const i=setInterval(async()=>{if(await getCurrentUser()){clearInterval(i);r();}},300);
+      });
+
+      $('#paso-0').classList.add('hidden'); $('#paso-1').classList.remove('hidden'); step(1);
+    }catch(err){
+      const msg=err?.error_description||err?.message||'Error';
+      if(msg.toLowerCase().includes('already registered')) $('#cta-login').classList.remove('hidden');
+      toast(msg); console.error(err);
+    }
+  };
+
+  /* ---------- paso 1 ---------- */
+  window.guardarHabitos=()=>{
+    const sueno=+$('#r-sueno').value, ejer=+$('#r-ejercicio').value;
+    if(isNaN(sueno)||sueno<3||sueno>15){toast('Sueño 3-15 horas');return;}
+    if(isNaN(ejer)||ejer<0||ejer>7){toast('Ejercicio 0-7 días');return;}
+
+    localStorage.setItem('pulsoSuenoTmp',sueno);
+    localStorage.setItem('pulsoEjerTmp',ejer);
+
+    $('#paso-1').classList.add('hidden'); $('#paso-2').classList.remove('hidden'); step(2);
+  };
+
+  /* ---------- paso 2 ---------- */
+  window.guardarPreferencias=async()=>{
+    const prio=$('input[name="r-prio"]:checked')?.value;
+    if(!prio){toast('Elige una prioridad');return;}
+
+    const payload={
+      nombre   :localStorage.getItem('pulsoNombreTmp'),
+      sueno    :+localStorage.getItem('pulsoSuenoTmp'),
+      ejercicio:+localStorage.getItem('pulsoEjerTmp'),
+      prioridad:prio
+    };
+
+    try{
+      await updateHabits(payload);
+      ['pulsoNombreTmp','pulsoSuenoTmp','pulsoEjerTmp'].forEach(k=>localStorage.removeItem(k));
+      toast('¡Perfil creado! ✅');
+      setTimeout(()=>location.href='index.html',1200);
+    }catch(err){
+      toast(err.message||'Error al guardar'); console.error(err);
+    }
+  };
+</script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="icon" href="fav.png" type="image/png">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PULSO – Historial</title>
@@ -33,13 +35,44 @@
 
 
   <main class="pantalla">
+    
     <h2>Historial de decisiones</h2>
+        <button id='borrar'class="btn-grad" onclick="borrarHistorial()">Borrar historial</button>
+
     <div id="historial-lista"></div>
 
-    <button class="btn-grad" onclick="borrarHistorial()">Borrar historial</button>
   </main>
 <div id="toast" class="toast hidden"></div>
 
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
+
+<script type="module">
+import {
+  getCurrentUser, listenToAuthChanges, logout,
+  getDisplayName
+} from './supabase-auth.js';
+
+const header  = document.getElementById('headerUser');
+const saludo  = document.getElementById('saludo-menu');
+
+function pintar(user){
+  if (user){
+    header.textContent = 'Salir';
+    header.onclick = logout;
+    getDisplayName(user).then(nombre => {
+      if (saludo) saludo.textContent = `Hola, ${nombre}!`;
+    });
+  } else {
+    header.textContent = 'Iniciar sesión';
+    header.onclick = () => location.href = 'login.html';
+    if (saludo) saludo.textContent = 'Hola, invitado!';
+  }
+}
+
+getCurrentUser().then(pintar);
+listenToAuthChanges(pintar);
+</script>
+
+
 </body>
 </html>

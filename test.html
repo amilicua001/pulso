@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Test Supabase</title>
+  <script type="module">
+    import {
+      getCurrentUser,
+      updateHabits,
+      logout,
+      listenToAuthChanges
+    } from './supabase-auth.js';
+
+    // Elementos
+    const $user   = document.createElement('pre');
+    const $input  = document.createElement('input');
+    const $save   = document.createElement('button');
+    const $logout = document.createElement('button');
+    document.body.append($user, $input, $save, $logout);
+
+    $input.placeholder = 'prioridad (salud|ocio|productividad)';
+    $save.textContent   = 'Guardar prioridad';
+    $logout.textContent = 'Cerrar sesión';
+
+    async function pintar(u){
+      $user.textContent = u ? JSON.stringify(u, null, 2) : 'Sin sesión';
+    }
+
+    // Estado actual
+    getCurrentUser().then(pintar);
+    listenToAuthChanges(pintar);
+
+    // Guardar prioridad
+    $save.onclick = async () => {
+      try{
+        await updateHabits({ prioridad: $input.value, sueno:null, ejercicio:null });
+        alert('OK guardado');
+      }catch(e){ console.error(e); alert('Error: ' + e.message); }
+    };
+
+    // Logout
+    $logout.onclick = async () => {
+      await logout();
+      location.reload();
+    };
+  </script>
+</head>
+<body></body>
+</html>

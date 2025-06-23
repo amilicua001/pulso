@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="icon" href="fav.png" type="image/png">
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PULSO - Aleatoria</title>
@@ -42,8 +44,8 @@
       </div>
 
 <div id="opciones-aleatorias" class="bloque-opciones">
-  <input type="text" palceholder="Escribe una opción..." />
-  <input type="text" palceholder="Escribe una opción..." />
+  <input type="text" placeholder="Escribe una opción..." />
+  <input type="text" placeholder="Escribe una opción..." />
 <button class="btn-link" onclick="añadirOpcion('opciones-aleatorias')">+ Añadir opción</button>
 
 </div>
@@ -66,7 +68,7 @@
       <p id="Mensaje-decision-A" class="frase-lila">La suerte decidirá</p>
 
       <div class="botones-footer">
-  <a href="historial.html" class="btn-secundario">HISTORIAL 🔍</a>
+  <a href="historial.html" class="btn-secundario">HISTORIAL</a>
   <a href="perfil.html"    class="btn-secundario">PERFIL ➤</a>
 </div>
 
@@ -74,6 +76,34 @@
   </main>
 <div id="toast" class="toast hidden"></div>
 
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
+
+<script type="module">
+import {
+  getCurrentUser, listenToAuthChanges, logout,
+  getDisplayName
+} from './supabase-auth.js';
+
+const header  = document.getElementById('headerUser');
+const saludo  = document.getElementById('saludo-menu');
+
+function pintar(user){
+  if (user){
+    header.textContent = 'Salir';
+    header.onclick = logout;
+    getDisplayName(user).then(nombre => {
+      if (saludo) saludo.textContent = `Hola, ${nombre}!`;
+    });
+  } else {
+    header.textContent = 'Iniciar sesión';
+    header.onclick = () => location.href = 'login.html';
+    if (saludo) saludo.textContent = 'Hola, invitado!';
+  }
+}
+
+getCurrentUser().then(pintar);
+listenToAuthChanges(pintar);
+</script>
+
 </body>
 </html>
